@@ -1,5 +1,30 @@
 # v0.1.0 (2026-11-05)
 
+- **Documentation & Distribution Cleanup**:
+  - Deprecated and removed global NPM package instructions (`npm install -g xrouter-ai`, `npx xrouter-ai`) and badges from `README.md` to align with the repository's native Git & Go Core distribution model.
+
+- **Port Complete Magpie OpenCode Specification**:
+  - Upgraded OpenCode fingerprint tool definitions to full 5 core tools (`edit`, `glob`, `grep`, `read`, `shell`) with exact upstream schemas.
+  - Injected OpenTelemetry trace headers (`b3`, `traceparent`) on every request to pass OpenCode 2.2.5+ telemetry verification.
+
+- **Fix Tailscale Installer Hanging ("Bengong") and Socket Detection**:
+  - Streamed `child.stderr` in `installTailscaleLinux` so apt-get progress is pushed to the UI in real time rather than freezing.
+  - Dynamically resolved active socket flag (`getActiveSocketFlag`) between system daemon (`/var/run/tailscale/tailscaled.sock`) and custom userspace socket.
+  - Broadened `parseAuthUrl` regex to match any `https://login.tailscale.com/*` auth URL.
+
+- **Align OpenCode Free Tier Endpoint Subpath**:
+  - Pointed free-tier executor URL to canonical `/inference/openai/v1/*` matching official CLI binary reverse-engineering findings.
+
+- **Port OpenCode Stale Limit Auto-Clear from OpenCode-Unlimited**:
+  - Automatically clear sticky `provider.free-limit` cached error flags from local `opencode.db` on session eviction to prevent permanent rate-limit lockouts.
+
+- **Harden OpenCode TLS Session Recycling on Rate Limit**:
+  - Evict TLS session from cache immediately upon receiving HTTP 429 response in `opencodeTlsClient.js` to ensure the next request gets a fresh TLS handshake and bypasses sticky throttling buckets.
+
+- **Port OpenCode Zen Dynamic Project ID Rotation (Bypass Quota Limit)**:
+  - Integrated `generateRandomProjectId()` (40-hex git-commit-shaped hash) from `TiaraBasori/OpenCode2API` in `open-sse/executors/opencode.js`.
+  - Replaced static `"global"` project header with dynamic rotation, isolating quota buckets per request to avoid premature HTTP 429 `FreeUsageLimitError`.
+
 - **Fix NPM CLI Update Check False Downgrade Prompt**:
   - Filtered legacy `0.6.x` published registry versions in `cli/cli.js` from triggering an update prompt when running the new `0.1.0` series locally.
 

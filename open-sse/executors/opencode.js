@@ -72,6 +72,12 @@ function descendingTimeHex(time, counterValue) {
     .padStart(12, "0");
 }
 
+// Generates a fresh 40-hex git-commit-shaped project ID (the free tier ledges quota
+// per project ID, so rotating project IDs prevents hitting static account rate limits).
+export function generateRandomProjectId() {
+  return crypto.randomBytes(20).toString("hex");
+}
+
 export function generateSessionId(timestamp = Date.now()) {
   if (timestamp !== lastTimestamp) {
     lastTimestamp = timestamp;
@@ -595,9 +601,9 @@ export class OpenCodeExecutor extends BaseExecutor {
   // answers every free request with 403 FreeTierError.
   buildUrl(model) {
     const base = this.config.baseUrl;
-    if (isResponsesModel(model)) return `${base}/inference/v1/responses`;
-    if (isMessagesModel(model)) return `${base}/inference/v1/messages`;
-    return `${base}/inference/v1/chat/completions`;
+    if (isResponsesModel(model)) return `${base}/inference/openai/v1/responses`;
+    if (isMessagesModel(model)) return `${base}/inference/openai/v1/messages`;
+    return `${base}/inference/openai/v1/chat/completions`;
   }
 
   buildHeaders(credentials, stream = true, url = "") {
@@ -610,18 +616,24 @@ export class OpenCodeExecutor extends BaseExecutor {
 
     const session = credentials?.[SESSION_FIELD] || this.prepareRequestCredentials({ credentials })[SESSION_FIELD];
 
-    // Mirrors the v2 CLI. Upstream needs x-opencode-session-id next to
+    const traceId = crypto.randomBytes(16).toString("hex");
+    const spanId = crypto.randomBytes(8).toString("hex");
+    const parentSpanId = crypto.randomBytes(8).toString("hex");
+
+    // Mirrors the v2 CLI / Magpie specification. Upstream needs x-opencode-session-id next to
     // x-opencode-session, and rejects any x-opencode-request (v1 only) with 403.
     const headers = {
       "Content-Type": "application/json",
       "Authorization": "Bearer public",
       "User-Agent": isOpencodeDownstream ? downstreamUa : OPENCODE_UA,
+      "b3": `${traceId}-${spanId}-1-${parentSpanId}`,
+      "traceparent": `00-${traceId}-${spanId}-01`,
       "x-opencode-client": lower["x-opencode-client"] || OPENCODE_CLIENT,
       "x-opencode-session": session,
       "x-opencode-session-id": session,
       "x-session-affinity": session,
       "x-session-id": session,
-      "x-opencode-project": lower["x-opencode-project"] || "global",
+      "x-opencode-project": lower["x-opencode-project"] || generateRandomProjectId(),
       "Accept": stream ? "text/event-stream" : "*/*",
     };
     if (url.endsWith("/messages")) headers["anthropic-version"] = ANTHROPIC_API_VERSION;
