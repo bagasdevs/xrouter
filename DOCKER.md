@@ -110,6 +110,12 @@ docker pull decolua/9router:0.5.81
 
 # 🛠 For Developers
 
+## Deploy on Railway
+
+`.railway/railway.ts` (Infrastructure as Code) builds this `Dockerfile` and
+healthchecks `/api/health`. See [RAILWAY.md](RAILWAY.md) for variables, the
+`/app/data` volume, and target-port settings.
+
 ## Build image locally (test)
 
 ```bash

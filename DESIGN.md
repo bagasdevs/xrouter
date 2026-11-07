@@ -6,7 +6,7 @@ Direction ini berasal dari pemilik produk (joshz), ditulis apa adanya. Ini **buk
 
 - **Produk:** X Router, gateway LLM (OpenAI + Anthropic compatible) yang di-host sendiri.
 - **Karakter:** tool infrastruktur yang hangat, bukan dashboard korporat dingin. Tegas, presisi, tapi tidak steril.
-- **Motif identitas:** **garis ember** — aturan gradient oranye tipis (`from-transparent via-primary to-transparent`) yang berulang sebagai pemisah dan aksen brand. Satu gesture, dipakai konsisten.
+- **Motif identitas:** **garis ember** — aturan oranye solid 1px yang berulang sebagai pemisah dan aksen brand. Satu gesture, dipakai konsisten. Tanpa gradient.
 - **Logo:** caduceus (tongkat Hermes). Keputusan pemilik, jangan diganti.
 
 ## Palette
@@ -14,7 +14,7 @@ Direction ini berasal dari pemilik produk (joshz), ditulis apa adanya. Ini **buk
 | Peran | Nilai | Alasan |
 |---|---|---|
 | Brand / accent | `#E56A4A` (ember orange) | Identitas pemilik. Hangat, jarang dipakai produk lain, jadi pembeda langsung dari default biru-ungu AI. |
-| Base dark | charcoal solid (`#0a0a0a` family) | Produk developer; tema gelap punya alasan fungsional (R-21), dan menahan oranye agar terbaca. |
+| Base dark | true black AMOLED (`#000000` dasar, panel `#0a0a0a`–`#1a1a1a`) | Produk developer; tema gelap punya alasan fungsional (R-21). Dasar hitam murni menghemat daya di layar AMOLED dan menahan oranye agar terbaca. |
 | Base light | `#FDFAF6` (warm off-white) | Versi terang yang tetap hangat, bukan putih dingin generik. |
 | Neutral | abu netral (`#6B7280` family) | Untuk teks sekunder, border, permukaan. Netral tidak dihitung ke palet inti. |
 
@@ -29,6 +29,7 @@ Palet inti: 1 base + 1 accent. Sesuai R-29.
 ## Surfaces
 
 - **Solid, tanpa glassmorphism.** Blur/translucency sudah dihapus dari seluruh UI (R-10). Panel, sidebar, header, dan modal semuanya opak.
+- **Tanpa gradient.** Latar, veil, garis pemisah, progress bar, dan tombol memakai warna solid; gradient hanya boleh di kontrol fungsional (hue/spectrum color picker).
 - **Elevation minimal.** Shadow hanya untuk modal dan dropdown yang benar-benar mengangkat diri dari halaman (R-12).
 - **Glow dose cap:** maksimal 1 elemen sebagai focus accent (R-13).
 

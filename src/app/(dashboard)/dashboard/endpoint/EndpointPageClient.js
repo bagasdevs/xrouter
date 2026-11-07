@@ -1789,7 +1789,7 @@ console.log(res.choices[0].message.content);`;
                             </span>
                           </div>
                           <div className="h-1.5 w-full rounded-full bg-surface-3 overflow-hidden border border-border-subtle relative">
-                            <div className="h-full bg-gradient-to-r from-emerald-500/20 via-emerald-400 to-emerald-500/20 w-full animate-pulse" />
+                            <div className="h-full bg-success/60 w-full animate-pulse" />
                           </div>
                         </div>
                       );
@@ -1826,10 +1826,10 @@ console.log(res.choices[0].message.content);`;
                             className={cn(
                               "h-full rounded-full transition-all duration-700 ease-out shadow-xs",
                               isExhausted
-                                ? "bg-gradient-to-r from-danger via-rose-500 to-danger animate-pulse"
+                                ? "bg-danger animate-pulse"
                                 : isWarning
-                                ? "bg-gradient-to-r from-amber-500 via-orange-400 to-amber-500"
-                                : "bg-gradient-to-r from-brand-500 via-emerald-400 to-brand-500"
+                                ? "bg-warning"
+                                : "bg-brand-500"
                             )}
                             style={{ width: `${Math.max(pct, 2)}%` }}
                           />

@@ -190,7 +190,14 @@ npm start
 X Router automatically reads configuration from `.env` (such as `PORT`, `DATA_DIR`, `INITIAL_PASSWORD`).
 If unconfigured, it defaults to `http://localhost:20128` (or `PORT` specified in your `.env`).
 
-### 3. Production Service (systemd)
+### 3. Railway (one-click cloud deploy)
+
+The repo ships `.railway/railway.ts` (Infrastructure as Code): Dockerfile
+builder, `/api/health` probe, and restart policy. Push the repo to Railway,
+attach a volume at `/app/data`, set `JWT_SECRET` and `INITIAL_PASSWORD`, then
+point the service's target port at `20128`. Full steps: [RAILWAY.md](RAILWAY.md).
+
+### 4. Production Service (systemd)
 
 ```ini
 [Unit]

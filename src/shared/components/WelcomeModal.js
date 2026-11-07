@@ -44,15 +44,6 @@ export default function WelcomeModal() {
     >
       <div className="space-y-5 text-text-main text-sm">
         <div className="relative flex flex-col items-center justify-center text-center px-6 pt-7 pb-6 gap-5 rounded-[6px] border border-border-subtle overflow-hidden">
-          {/* Identity motif: the ember veil, rising behind the mark. */}
-          <div
-            aria-hidden
-            className="pointer-events-none absolute inset-x-0 top-0 h-28"
-            style={{
-              background:
-                "radial-gradient(ellipse 70% 100% at 50% 0%, color-mix(in srgb, var(--color-primary) 26%, transparent), transparent 72%)",
-            }}
-          />
           <div className="relative h-16 w-16 rounded-[6px] border border-border-subtle overflow-hidden p-1 bg-surface-2">
             <LogoMark className="size-full" />
           </div>

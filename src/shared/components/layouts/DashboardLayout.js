@@ -152,11 +152,8 @@ export default function DashboardLayout({ children }) {
         {/* No `isolate` here on purpose. `isolate` opens a stacking context,
             which traps every `fixed inset-0 z-50` overlay declared inside the
             page below the `z-30` mobile app header — the header then paints
-            over the modal and hides its title row. The veil is the only
-            element that needs to sit behind the content, and it already uses
-            `-z-10` against the root stacking context. */}
+            over the modal and hides its title row. */}
         <main className="relative flex min-h-0 flex-1 flex-col overflow-hidden">
-          <div className="ember-veil pointer-events-none absolute inset-0 -z-10" aria-hidden="true" />
           {showHeading ? <PageHeading className="shrink-0" /> : null}
           <div
             className={

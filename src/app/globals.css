@@ -147,16 +147,16 @@
   --color-primary: #E56A4A;
   --color-primary-hover: #b8442a;
 
-  /* Surfaces (dark - near-black instrument panel) */
-  --color-bg: #050505;
-  --color-bg-alt: #0d0d0d;
-  --color-surface: #111111;
-  --color-surface-2: #1a1a1a;
-  --color-surface-3: #242424;
-  --color-sidebar: #0d0d0d;
+  /* Surfaces (dark — AMOLED: true-black base, near-black panels) */
+  --color-bg: #000000;
+  --color-bg-alt: #050505;
+  --color-surface: #0a0a0a;
+  --color-surface-2: #121212;
+  --color-surface-3: #1a1a1a;
+  --color-sidebar: #000000;
 
-  --color-border: #242424;
-  --color-border-subtle: #1a1a1a;
+  --color-border: #1f1f1f;
+  --color-border-subtle: #141414;
 
   --color-text: #ededed;
   --color-text-main: #ededed;
@@ -194,8 +194,8 @@
   --color-info-fg: #8fbde0;
   --color-info-border: rgba(91, 147, 189, 0.30);
 
-  --color-field: #0b0b0b;
-  --color-field-border: #262626;
+  --color-field: #0a0a0a;
+  --color-field-border: #232323;
 
   --shadow-soft: 0 1px 2px 0 rgba(0,0,0,0.3);
   --shadow-warm: 0 1px 2px rgba(0,0,0,0.4), 0 0 0 1px rgba(229, 106, 74, 0.22);
@@ -290,13 +290,13 @@ select {
 
   /* Static fallbacks (explicit per-mode usage if needed) */
   --color-bg-light: #FCFBF9;
-  --color-bg-dark: #1a1a1a;
+  --color-bg-dark: #000000;
   --color-surface-light: #ffffff;
-  --color-surface-dark: #262626;
+  --color-surface-dark: #0a0a0a;
   --color-sidebar-light: #F4F1EC;
-  --color-sidebar-dark: #1F1F1E;
+  --color-sidebar-dark: #000000;
   --color-border-light: #e5e7eb;
-  --color-border-dark: #333333;
+  --color-border-dark: #1f1f1f;
   --color-text-main-light: #0a0a0a;
   --color-text-main-dark: #ededed;
   --color-text-muted-light: #6B7280;
@@ -418,9 +418,9 @@ input, textarea {
   border-radius: var(--radius-brand-lg);
 }
 
-/* Hero gradient (compat) */
+/* Hero background (compat) — flat, no gradient */
 .bg-hero-gradient {
-  background: linear-gradient(180deg, var(--color-bg-alt) 0%, var(--color-bg) 100%);
+  background: var(--color-bg);
 }
 
 /* macOS Vibrancy */
@@ -553,11 +553,7 @@ button:disabled,
 }
 .animate-pulse-glow { animation: pulseGlow 3s ease-in-out infinite; }
 
-/* CTA shimmer + glow pulse */
-@keyframes ctaShimmer {
-  0% { transform: translateX(-120%) skewX(-20deg); }
-  100% { transform: translateX(220%) skewX(-20deg); }
-}
+/* CTA glow pulse (no shimmer sweep — AMOLED keeps motion off the surface) */
 @keyframes ctaGlowPulse {
   0%, 100% { box-shadow: 0 8px 24px -8px rgba(229, 106, 74, 0.45), 0 0 0 0 rgba(229, 106, 74, 0.5); }
   50% { box-shadow: 0 12px 32px -8px rgba(229, 106, 74, 0.6), 0 0 0 8px rgba(229, 106, 74, 0); }
@@ -568,58 +564,11 @@ button:disabled,
   isolation: isolate;
   animation: ctaGlowPulse 2.4s ease-in-out infinite;
 }
-.btn-cta::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 50%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent);
-  animation: ctaShimmer 2.8s ease-in-out infinite;
-  pointer-events: none;
-  z-index: 1;
-}
 .btn-cta > * { position: relative; z-index: 2; }
 
-/* Dot Grid Background Pattern */
+/* Flat background pattern (compat class; the radial wash is gone) */
 .dot-grid-bg {
   background-color: var(--color-bg);
-  background-image:
-    radial-gradient(circle at 15% 20%, rgba(229, 106, 74, 0.10) 0%, transparent 40%),
-    radial-gradient(circle at 85% 80%, rgba(229, 106, 74, 0.06) 0%, transparent 40%);
-}
-.dark .dot-grid-bg {
-  background-image:
-    radial-gradient(circle at 15% 20%, rgba(229, 106, 74, 0.18) 0%, transparent 40%),
-    radial-gradient(circle at 85% 80%, rgba(229, 106, 74, 0.10) 0%, transparent 40%);
-}
-
-/* Identity motif: the ember veil. A warm glow rising from the top edge, not a
-   blueprint grid (R-07: pattern must carry the product's identity). The class
-   name stays `.landing-grid` so every existing call site keeps working. */
-.landing-grid {
-  background-image: radial-gradient(
-    ellipse 80% 55% at 50% -10%,
-    color-mix(in srgb, var(--color-primary) 22%, transparent),
-    transparent 70%
-  );
-  opacity: 1;
-}
-.dark .landing-grid {
-  background-image: radial-gradient(
-    ellipse 80% 55% at 50% -10%,
-    color-mix(in srgb, var(--color-primary) 14%, transparent),
-    transparent 70%
-  );
-}
-/* Alias for the app shell. Same single veil — one glow per screen (R-13). */
-.ember-veil {
-  background-image: radial-gradient(
-    ellipse 70% 45% at 50% -8%,
-    color-mix(in srgb, var(--color-primary) 9%, transparent),
-    transparent 72%
-  );
 }
 
 /* Topology: router card pulse (no flying rings) + electric edge beam */
@@ -756,39 +705,34 @@ button:disabled,
    Ember theme — SOLID warm panels (no frosted/translucent surfaces)
    Applied as `<html class="dark ember">` (default in X Router).
 
-   Same explicit-colour approach as before: `@theme inline` bakes tokens into
-   utilities, so token overrides alone do not repaint `.bg-surface`.
+   AMOLED: true-black base, no background gradients. The brand accent
+   lives on interactive elements only, never as a wash behind content.
    ============================================================ */
 .dark.ember,
 .dark.ember body {
-  background-color: #050505;
-}
-.dark.ember body {
-  background-image:
-    radial-gradient(46rem 30rem at 92% -4%, rgba(229, 106, 74, 0.10), transparent 62%),
-    radial-gradient(38rem 26rem at -6% 104%, rgba(229, 106, 74, 0.05), transparent 60%);
-  background-attachment: fixed;
+  background-color: #000000;
+  background-image: none;
 }
 
-.dark.ember .bg-surface  { background-color: #0e0d0c !important; }
-.dark.ember .bg-surface-2 { background-color: #161412 !important; }
-.dark.ember .bg-surface-3 { background-color: #1f1b18 !important; }
-.dark.ember .bg-bg-alt   { background-color: #0a0908 !important; }
-.dark.ember .bg-bg       { background-color: #050505 !important; }
+.dark.ember .bg-surface  { background-color: #0a0908 !important; }
+.dark.ember .bg-surface-2 { background-color: #121110 !important; }
+.dark.ember .bg-surface-3 { background-color: #1a1817 !important; }
+.dark.ember .bg-bg-alt   { background-color: #050505 !important; }
+.dark.ember .bg-bg       { background-color: #000000 !important; }
 
 /* Inputs: fully opaque field, near-black. */
 .dark.ember input,
 .dark.ember select,
 .dark.ember textarea {
-  background-color: #0b0b0b !important;
-  border-color: #262626 !important;
+  background-color: #0a0a0a !important;
+  border-color: #232323 !important;
 }
 
 .dark.ember ::-webkit-scrollbar-thumb {
-  background: #26221f;
+  background: #1f1f1f;
 }
 .dark.ember ::-webkit-scrollbar-thumb:hover {
-  background: #332d28;
+  background: #2e2e2e;
 }
 
 
@@ -800,23 +744,14 @@ button:disabled,
 
 @layer components {
 /* Identity motif: the ember hairline. A 1px warm rule used as a
-   separator and as a state accent. Reused, never multiplied (R-13). */
+   separator and as a state accent. Solid, never a gradient wash (R-13). */
 .ember-rule {
   display: block;
   height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    color-mix(in srgb, var(--color-primary) 60%, transparent),
-    transparent
-  );
+  background: color-mix(in srgb, var(--color-primary) 35%, var(--color-border));
 }
 .ember-rule-left {
-  background: linear-gradient(
-    90deg,
-    color-mix(in srgb, var(--color-primary) 85%, transparent),
-    transparent
-  );
+  background: color-mix(in srgb, var(--color-primary) 70%, var(--color-border));
 }
 
 /* Micro-label: the small uppercase tag that heads every group. */

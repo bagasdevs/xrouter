@@ -3,9 +3,6 @@
 export default function HeroSection() {
   return (
     <section className="relative pt-32 pb-20 px-6 min-h-[90vh] flex flex-col items-center justify-center overflow-hidden">
-      {/* Glow effect */}
-      <div className="absolute inset-x-0 top-0 h-[420px] pointer-events-none" style={{ background: "radial-gradient(ellipse 65% 100% at 50% 0%, color-mix(in srgb, var(--color-primary) 14%, transparent), transparent 70%)" }}></div>
-      
       <div className="relative z-10 max-w-4xl w-full text-center flex flex-col items-center gap-8">
         {/* Version badge */}
         <div className="inline-flex items-center gap-2 rounded-full border border-[#3a2f27] bg-[#23180f]/50 px-3 py-1 text-xs font-medium text-[var(--color-brand-500)]">

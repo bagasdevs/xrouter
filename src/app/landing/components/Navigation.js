@@ -16,7 +16,7 @@ export default function Navigation() {
           onClick={() => router.push("/")}
           aria-label="Navigate to home"
         >
-          <div className="size-8 rounded bg-linear-to-br from-[var(--color-brand-500)] to-brand-500 flex items-center justify-center text-white">
+          <div className="size-8 rounded bg-[var(--color-brand-500)] flex items-center justify-center text-white">
             <span className="material-symbols-outlined text-[20px]">hub</span>
           </div>
           <h2 className="text-white text-xl font-bold tracking-tight">X Router</h2>

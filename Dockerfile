@@ -69,6 +69,11 @@ COPY --from=builder /app/node_modules/node-machine-id ./node_modules/node-machin
 COPY --from=builder /app/node_modules/uuid ./node_modules/uuid
 COPY --from=builder /app/node_modules/undici ./node_modules/undici
 COPY --from=builder /app/node_modules/confbox ./node_modules/confbox
+# Auth guard (dashboardSession/oidc) loads these at runtime from src/, so the
+# standalone tracer never includes them. Missing jose makes every request 503,
+# including the unauthenticated /api/health probe.
+COPY --from=builder /app/node_modules/jose ./node_modules/jose
+COPY --from=builder /app/node_modules/bcryptjs ./node_modules/bcryptjs
 
 RUN mkdir -p /app/data && chown -R node:node /app && \
   mkdir -p /app/data-home && chown node:node /app/data-home && \

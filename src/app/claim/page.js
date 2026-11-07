@@ -645,8 +645,7 @@ export default function ClaimPage() {
 
   return (
     <div className="min-h-screen bg-bg text-text-main flex flex-col justify-between selection:bg-primary/25 selection:text-white font-sans antialiased">
-      {/* Hairline grid background */}
-      <div className="fixed inset-0 pointer-events-none bg-[radial-gradient(var(--color-border)_1px,transparent_1px)] [background-size:16px_16px] opacity-40" />
+      {/* Flat background — AMOLED, no pattern */}
 
       {/* Top Console Bar */}
       <header className="relative z-10 flex h-13 w-full items-center justify-between border-b border-border bg-surface px-4 sm:px-8">

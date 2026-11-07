@@ -102,7 +102,7 @@ function RouterNode({ data }) {
     <div
       className={`relative z-[1] flex items-center justify-center px-5 py-3 rounded-[6px] border-2 min-w-[130px] ${
         powering
-          ? "topology-router-core border-warning-border bg-gradient-to-br from-primary/30 via-brand-500 to-brand-500"
+          ? "topology-router-core border-warning-border bg-primary/20"
           : "border-primary bg-primary/5 shadow-[var(--shadow-elev)]"
       }`}
     >

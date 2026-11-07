@@ -12,15 +12,6 @@ const DEFAULT_PASSWORD = "xrouter123";
 function BrandPanel() {
   return (
     <aside className="relative hidden lg:flex flex-col justify-center gap-14 overflow-hidden bg-surface-2 border-r border-border p-10 xl:p-14">
-      {/* Identity motif: the ember veil, a warm glow anchored to the bottom edge. */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-2/3"
-        style={{
-          background:
-            "radial-gradient(ellipse 90% 70% at 20% 110%, color-mix(in srgb, var(--color-primary) 30%, transparent), transparent 70%)",
-        }}
-      />
       <div className="relative">
         <div className="flex items-center gap-3">
           <div className="h-11 w-11 rounded-[6px] border border-border-subtle overflow-hidden">
@@ -36,8 +27,8 @@ function BrandPanel() {
       </div>
 
       <div className="relative max-w-md">
-        {/* Identity motif: the ember line. Repeats as the brand's one gesture. */}
-        <div className="h-px w-16 bg-gradient-to-r from-primary to-transparent mb-6" aria-hidden="true" />
+        {/* Identity motif: the ember line. Solid, the brand's one gesture. */}
+        <div className="h-px w-16 bg-primary mb-6" aria-hidden="true" />
         <h2 className="text-[28px] leading-tight font-semibold tracking-tight text-text-main">
           Satu endpoint untuk semua provider AI kamu.
         </h2>
@@ -261,7 +252,6 @@ export default function LoginPage() {
       <div className="min-h-screen grid lg:grid-cols-2 bg-bg">
         <BrandPanel />
         <div className="relative flex items-center justify-center p-6 sm:p-10">
-          <div className="landing-grid absolute inset-0 pointer-events-none" aria-hidden="true" />
           <div className="relative z-10 w-full max-w-sm">
             <CompactBrand />
             <Card className="shadow-none">
@@ -286,7 +276,6 @@ export default function LoginPage() {
       <BrandPanel />
 
       <div className="relative flex items-center justify-center p-6 sm:p-10">
-        <div className="landing-grid absolute inset-0 pointer-events-none" aria-hidden="true" />
         <div className="relative z-10 w-full max-w-sm">
           <CompactBrand />
 

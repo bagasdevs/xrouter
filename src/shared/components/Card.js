@@ -47,7 +47,7 @@ export default function Card({
       {/* Ember edge — the single brand gesture, opt-in per panel. */}
       {accent && (
         <span
-          className="absolute inset-y-0 left-0 w-[3px] bg-[linear-gradient(180deg,var(--brand-400),var(--brand-600))]"
+          className="absolute inset-y-0 left-0 w-[3px] bg-brand-500"
           aria-hidden="true"
         />
       )}

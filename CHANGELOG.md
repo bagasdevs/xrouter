@@ -10,6 +10,15 @@
 
 # v0.0.8 (2026-11-05)
 
+- **AMOLED Theme — True Black, No Gradients**:
+  - Dark and Ember modes now sit on a true-black `#000000` base with near-black panels (`#0a0a0a`–`#1a1a1a`); the light mode is untouched.
+  - Removed every decorative gradient: page veils (`.landing-grid`, `.ember-veil`, hero/dot-grid washes), body radial glows, gradient hairlines (`.ember-rule`), card edge rails, quota progress bars, topology node fill, CTA shimmer sweep, and the landing connector line. Only functional color-picker gradients (hue/spectrum) remain.
+  - Theme picker swatches, `theme-color` meta, and the PWA manifest now report the AMOLED palette.
+
+- **Railway Deployment Support**:
+  - Added `.railway/railway.ts` (Infrastructure as Code) declaring the `xrouter` service from `bagasdevs/xrouter@main`: Dockerfile builder, `/api/health` healthcheck, restart-on-failure, single replica. Legacy `railway.json` Config-as-Code was migrated and removed ahead of the 2026-12-01 cutoff.
+  - Added the `railway` SDK as a devDependency plus `RAILWAY.md` covering `config plan`/`apply`, variables, the `/app/data` volume, target port, and single-replica caveats.
+
 - **Port Go Core Diagnostic Proxy Test to Node.js Gateway**:
   - Implemented `/api/test-proxy` endpoint in Next.js router (`src/app/api/test-proxy/route.js`) using `undici` and `ProxyAgent` for full feature parity with Go Core.
 
